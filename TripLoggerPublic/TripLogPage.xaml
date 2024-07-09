@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage 
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="TripLoggerPublic.TripLogPage"
+    Title="TripLogPage"
+    xmlns:viewmodel="clr-namespace:TripLoggerPublic.ViewModel"
+    Background="#1E1D1D">
+
+    <!--<ContentPage.BindingContext>
+        <viewmodel:TripLogViewModel />
+    </ContentPage.BindingContext>-->
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <viewmodel:TripLogViewModel x:Key="ViewModel" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.BindingContext>
+        <StaticResource Key="ViewModel" />
+    </ContentPage.BindingContext>
+
+    <ScrollView>
+        <StackLayout>
+            <!-- Top options -->
+            <Grid Padding="10, 10, 0, 0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="3*" />
+                </Grid.ColumnDefinitions>
+                <Label
+                    Text="&lt;"
+                    FontSize="48"
+                    Margin="10, 0, 0, 0"
+                    TextColor="RoyalBlue"
+                    HorizontalOptions="Start"
+                    VerticalOptions="Center"
+                    Grid.Column="0">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding ViewTripsCommand}" />
+                    </Label.GestureRecognizers>
+                </Label>
+                <Label
+                    Text="Searched Trips"
+                    FontSize="32"
+                    TextColor="White"
+                    FontAttributes="Bold"
+                    HorizontalOptions="Start"
+                    VerticalOptions="Center"
+                    Grid.Column="1" >
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding IndividualTripCommand}" />
+                    </Label.GestureRecognizers>
+                </Label>
+            </Grid>
+            <!-- Horizontal Line -->
+            <BoxView
+                BackgroundColor="White"
+                HorizontalOptions="FillAndExpand"
+                HeightRequest="1"
+                Margin="0, 10, 0, 20"/>
+            
+            <!-- The Body -->
+            <Frame
+                Margin="20, 0, 20, 40"
+                BackgroundColor="#30ffffff"
+                BorderColor="Transparent">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Label 
+                        Text="Total Kilometers:"
+                        TextColor="White"
+                        FontSize="22"
+                        Margin="0, -7.5"
+                        Grid.Column="0"/>
+                    <Label 
+                        Text="{Binding TotalKilometers, StringFormat='{0}km'}"
+                        TextColor="White"
+                        FontSize="22"
+                        Margin="0, -7.5"
+                        HorizontalOptions="End"
+                        Grid.Column="1"/>
+                </Grid>
+            </Frame>
+            <Label 
+                Text="Trips Searched:"
+                Margin="20, 0, 20, 15"
+                TextColor="White"
+                FontSize="14"/>
+            <Frame
+                Margin=" 20, 0, 20, 25"
+                BackgroundColor="#30ffffff"
+                BorderColor="Transparent">
+                <CollectionView ItemsSource="{Binding TripLogs}">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout>
+                                <Grid
+                                    Margin="0, 0, 0, 15">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Label 
+                                        Text="{Binding TripID, StringFormat='Trip Number: {0}'}"
+                                        TextColor="White"
+                                        FontSize="18"
+                                        Grid.Column="0" />
+                                    <Label 
+                                        Text="{Binding Date, StringFormat='{0:dd/MM/yyyy}'}"
+                                        TextColor="White"
+                                        FontSize="18"
+                                        Grid.Column="1"
+                                        HorizontalTextAlignment="End"/>
+                                </Grid>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <StackLayout
+                                        Grid.Column="0">
+                                        <Label 
+                                            Text="{Binding Kilometers, StringFormat='Kilometers: {0}km'}"
+                                            TextColor="White"
+                                            FontSize="16"
+                                            Margin="0, 0, 0, 5"/>
+                                        <Label 
+                                            Text="{Binding Purpose, StringFormat='Purpose: {0}'}"
+                                            TextColor="White"
+                                            FontSize="16"/>
+                                    </StackLayout>
+                                    <Label
+                                        Text="→"
+                                        FontSize="48"
+                                        TextColor="White"
+                                        HorizontalOptions="Center"
+                                        Margin="0, -15, 0, 0"
+                                        Grid.Column="1" />
+                                </Grid>
+                                <BoxView
+                                    BackgroundColor="White"
+                                    HorizontalOptions="FillAndExpand"
+                                    HeightRequest="1"
+                                    Margin="0, 20, 0, 20" />
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding Source={x:Reference Page}, Path=BindingContext.IndividualTripCommand}" CommandParameter="{Binding .}" />
+                                </StackLayout.GestureRecognizers>
+                            </StackLayout>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </Frame>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

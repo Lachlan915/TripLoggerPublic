@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TripLoggerPublic.ViewTrips"
+             Title="ViewTrips"
+             xmlns:viewmodel="clr-namespace:TripLoggerPublic.ViewModel"
+             x:DataType="viewmodel:ViewTripsViewModel"
+             BackgroundColor="#1E1D1D">
+    
+    <ContentPage.BindingContext>
+        <viewmodel:ViewTripsViewModel />
+    </ContentPage.BindingContext>
+    
+    <ScrollView>
+        <StackLayout>
+            <!-- Top options -->
+            <Grid Padding="0, 20, 0, 0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Label
+		            Text="Create Trip"
+		            FontSize="32"
+		            TextColor="White"
+		            FontAttributes="Bold"
+		            HorizontalOptions="CenterAndExpand"
+		            Grid.Column="0">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding AddEntryCommand}" />
+                    </Label.GestureRecognizers>
+                </Label>
+                <Label
+		            Text="View Trips"
+		            FontSize="32"
+		            TextColor="RoyalBlue"
+		            FontAttributes="Bold"
+		            HorizontalOptions="CenterAndExpand"
+		            Grid.Column="1" />
+            </Grid>
+
+            <!-- Horizontal Line with two colours -->
+            <Grid HeightRequest="1" Margin="0, 10, 0, 20">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <BoxView
+		            BackgroundColor="White"
+		            HorizontalOptions="FillAndExpand"
+		            Grid.Column="0" />
+                <BoxView
+		            BackgroundColor="RoyalBLue"
+		            HorizontalOptions="FillAndExpand"
+		            Grid.Column="1" />  
+            </Grid>
+            
+            <!-- The Body -->
+            <StackLayout 
+                Margin="10, 0, 0, 0">
+                <Label 
+                    Text="Search Trips"
+                    TextColor="White"
+                    FontSize="14"
+                    Margin="10"/>
+                <Frame
+                    Margin="10, 0, 20, 0"
+                    BackgroundColor="#30ffffff"
+                    BorderColor="Transparent">
+                    <StackLayout
+                        Margin="-20">
+                        <!-- Search TripID -->
+                        <Label 
+                            Text="Search Trip Number:"
+                            TextColor="White"
+                            Margin="10"
+                            FontSize="14"/>
+                        <!-- Trip Number -->
+                        <Label 
+                            Text="Trip Number:"
+                            TextColor="White"
+                            FontSize="22"
+                            Margin="20, 0, 0, 0"/>
+                        <Grid Margin="20, -10, 20, 20">
+                            <Entry
+					            FontSize="20"
+                                Keyboard="Numeric"
+					            TextColor="White"
+                                Text="{Binding TripNumber}"
+					            BackgroundColor="Transparent"
+					            Margin="0, 0, 0, -7" />
+                            <BoxView
+					            HeightRequest="1"
+					            BackgroundColor="White"
+					            VerticalOptions="End"
+					            HorizontalOptions="FillAndExpand" />
+                        </Grid>
+
+                        <!-- Search Trips Between Dates -->
+                        <Label 
+                            Text="Search Trips Between Dates:"
+                            TextColor="White"
+                            FontSize="14"
+                            Margin="10, 0, 10, 10"/>
+                        <!-- From Date -->
+                        <Label 
+                            Text="From Date:"
+                            TextColor="White"
+                            FontSize="22"
+                            Margin="20, 0, 0, 0"/>
+                        <Grid Margin="20, 0, 20, 5">
+                            <DatePicker 
+                                TextColor="White"
+                                FontSize="20"
+                                BackgroundColor="Transparent"
+                                Date="{Binding FromDate}"
+                                Margin="0, 0, 0, -7" />
+                            <BoxView
+				                HeightRequest="1"
+				                BackgroundColor="White"
+				                VerticalOptions="End"
+				                HorizontalOptions="FillAndExpand" />
+                        </Grid>
+                        <Label
+                            Text="The date format is 'MM/dd/yyyy'"
+                            FontSize="14"
+                            TextColor="Gray"
+                            Margin="20, 0, 20, 20" />
+                        <!-- Include date picker here -->
+                        <!-- To Date -->
+                        <Label 
+                            Text="To Date:"
+                            TextColor="White"
+                            FontSize="22"
+                            Margin="20, 0, 0, 0"/>
+                        <Grid Margin="20, 0, 20, 5">
+                            <DatePicker 
+                                TextColor="White"
+                                FontSize="20"
+                                BackgroundColor="Transparent"
+                                Date="{Binding ToDate}"
+                                Margin="0, 0, 0, -7" />
+                            <BoxView
+                                HeightRequest="1"
+                                BackgroundColor="White"
+                                VerticalOptions="End"
+                                HorizontalOptions="FillAndExpand" />
+                        </Grid>
+                        <Label
+                            Text="The date format is 'MM/dd/yyyy'"
+                            FontSize="14"
+                            TextColor="Gray"
+                            Margin="20, 0, 20, 20" />
+
+                        <!-- Search Trips Between Distances -->
+                        <Label 
+                            Text="Search Trips Between Distances:"
+                            TextColor="White"
+                            Margin="10, 0, 10, 10"
+                            FontSize="14"/>
+                        <!-- From Distance -->
+                        <Label 
+                            Text="From Distance:"
+                            TextColor="White"
+                            FontSize="22"
+                            Margin="20, 0, 0, 0"/>
+                        <Grid Margin="20, -10, 20, 5">
+                            <Entry
+					            FontSize="20"
+                                Keyboard="Numeric"
+					            TextColor="White"
+                                Text="{Binding FromDistance}"
+					            BackgroundColor="Transparent"
+					            Margin="0, 0, 0, -7" />
+                            <BoxView
+					            HeightRequest="1"
+					            BackgroundColor="White"
+					            VerticalOptions="End"
+					            HorizontalOptions="FillAndExpand" />
+                        </Grid>
+                        <Label
+                            Text="Distances will be measured in kilometers"
+                            FontSize="14"
+                            TextColor="Gray"
+                            Margin="20, 0, 20, 20" />
+                        <!-- To Distance -->
+                        <Label 
+                            Text="To Distance:"
+                            TextColor="White"
+                            FontSize="22"
+                            Margin="20, 0, 0, 0"/>
+                        <Grid Margin="20, -10, 20, 5">
+                            <Entry
+					            FontSize="20"
+                                Keyboard="Numeric"
+					            TextColor="White"
+                                Text="{Binding ToDistance}"
+					            BackgroundColor="Transparent"
+					            Margin="0, 0, 0, -7" />
+                            <BoxView
+					            HeightRequest="1"
+					            BackgroundColor="White"
+					            VerticalOptions="End"
+					            HorizontalOptions="FillAndExpand" />
+                        </Grid>
+                        <Label
+                            Text="Distances will be measured in kilometers"
+                            FontSize="14"
+                            TextColor="Gray"
+                            Margin="20, 0, 20, 20" />
+
+                        <!-- Search Purpose -->
+                        <Label 
+                            Text="Search Purpose:"
+                            TextColor="White"
+                            Margin="10, 0, 10, 10"
+                            FontSize="14"/>
+                        <!-- Trip Purpose -->
+                        <Label 
+                            Text="Trip Purpose:"
+                            TextColor="White"
+                            FontSize="22"
+                            Margin="20, 0, 0, 0"/>
+                        <Grid Margin="20, -10, 20, 5">
+                            <Entry
+					            FontSize="20"
+					            TextColor="White"
+                                Text="{Binding Purpose}"
+					            BackgroundColor="Transparent"
+					            Margin="0, 0, 0, -7" />
+                            <BoxView
+					            HeightRequest="1"
+					            BackgroundColor="White"
+					            VerticalOptions="End"
+					            HorizontalOptions="FillAndExpand" />
+                        </Grid>
+                        <Label
+                            Text="Only 'Work' or 'Personal' can be entered here"
+                            FontSize="14"
+                            TextColor="Gray"
+                            Margin="20, 0, 20, 20" />
+                    </StackLayout>
+                </Frame>
+                <Label
+				    Text="Fill out at least one of the fields above to receive results"
+				    FontSize="14"
+				    TextColor="Gray"
+				    Margin="0, 5, 10, 30" 
+                    HorizontalOptions="Center"/>
+
+                <!-- Search Button -->
+                <Button
+                    Text="Search"
+                    Command="{Binding SearchTripsCommand}"
+                    BackgroundColor="RoyalBlue"
+                    HorizontalOptions="FillAndExpand" 
+                    VerticalOptions="FillAndExpand"
+                    FontSize="24"
+                    Padding="0, -1"
+                    Margin="10, 0, 20, 40"
+                    TextColor="White"/>
+            </StackLayout>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

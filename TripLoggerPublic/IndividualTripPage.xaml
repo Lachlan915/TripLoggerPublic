@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage 
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="TripLoggerPublic.IndividualTripPage"
+    Title="IndividualTripPage"
+    xmlns:viewmodel="clr-namespace:TripLoggerPublic.ViewModel"
+    Background="#1E1D1D">
+
+    <ContentPage.BindingContext>
+        <viewmodel:IndividualTripViewModel />
+    </ContentPage.BindingContext>
+
+    <ScrollView>
+        <StackLayout>
+            <!-- Top options -->
+            <Grid Padding="10, 10, 0, 0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="3*" />
+                </Grid.ColumnDefinitions>
+                <Label
+                    Text="&lt;"
+                    FontSize="48"
+                    Margin="10, 0, 0, 0"
+                    TextColor="RoyalBlue"
+                    HorizontalOptions="Start"
+                    VerticalOptions="Center"
+                    Grid.Column="0">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding TripLogCommand}" />
+                    </Label.GestureRecognizers>
+                </Label>
+                <Label
+                    Text="Manage Trip"
+                    FontSize="32"
+                    TextColor="White"
+                    FontAttributes="Bold"
+                    HorizontalOptions="Start"
+                    VerticalOptions="Center"
+                    Grid.Column="1" >
+                </Label>
+            </Grid>
+            <!-- Horizontal Line -->
+            <BoxView
+                BackgroundColor="White"
+                HorizontalOptions="FillAndExpand"
+                HeightRequest="1"
+                Margin="0, 10, 0, 20"/>
+
+            <!-- The Body -->
+            <StackLayout
+                Padding="20"
+                Margin="0, 0, 0, 25">
+                <!-- Trip Number -->
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Label
+                        Text="Trip Number:"
+                        FontSize="24"
+                        TextColor="White"
+                        Grid.Column="0"/>
+                    <Grid
+                        Grid.Column="1"
+                        Margin="-20, -5, 0, 0">
+                        <Entry
+                            Keyboard="Numeric"
+                            FontSize="20"
+                            TextColor="White"
+                            BackgroundColor="Transparent"
+                            Margin="0, 0, 0, -7"
+                            Text="1"
+                            HorizontalTextAlignment="End"/>
+                        <BoxView
+                            HeightRequest="1"
+                            BackgroundColor="White"
+                            VerticalOptions="End"
+                            HorizontalOptions="FillAndExpand" />
+                    </Grid>
+                </Grid>
+                
+                <!-- Starting Odometer -->
+                <Label
+		            Text="Starting Odometer:"
+		            FontSize="24"
+		            TextColor="White"
+		            Margin="0, 40, 0, -5" />
+                <Grid Margin="0, 0, 0, 5">
+                    <Entry
+			            Keyboard="Numeric"
+			            FontSize="20"
+			            TextColor="White"
+			            BackgroundColor="Transparent"
+			            Margin="0, 0, 0, -7"
+                        Text="8008135"/>
+                    <BoxView
+			            HeightRequest="1"
+			            BackgroundColor="White"
+			            VerticalOptions="End"
+			            HorizontalOptions="FillAndExpand" />
+                </Grid>
+                <Label
+		            Text="Only numbers or integers can be entered"
+		            FontSize="14"
+		            TextColor="Grey"
+		            Margin="0, 0, 0, 40" />
+
+                <!-- Ending Odometer -->
+                <Label
+				    Text="End Odometer:"
+				    FontSize="24"
+				    TextColor="White"
+				    Margin="0, 0, 0, -5" />
+                <Grid Margin="0, 0, 0, 5">
+                    <Entry
+					    Keyboard="Numeric"
+					    FontSize="20"
+					    TextColor="White"
+					    BackgroundColor="Transparent"
+					    Margin="0, 0, 0, -7"
+                        Text="8008135"/>
+                    <BoxView
+					    HeightRequest="1"
+					    BackgroundColor="White"
+					    VerticalOptions="End"
+					    HorizontalOptions="FillAndExpand" />
+                </Grid>
+                <Label
+				    Text="Only numbers or integers can be entered"
+				    FontSize="14"
+				    TextColor="Gray"
+				    Margin="0, 0, 0, 40" />
+
+                <!-- Total Kilometers -->
+                <Grid
+                    Margin="0, 0, 0, 40">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Label
+                        Text="Total Kilometers:"
+                        FontSize="24"
+                        TextColor="White"
+                        Grid.Column="0"/>
+                    <Grid
+                        Grid.Column="1"
+                        Margin="-40, -5, 0, 0">
+                        <Entry
+                            Keyboard="Numeric"
+                            FontSize="20"
+                            TextColor="White"
+                            BackgroundColor="Transparent"
+                            Margin="0, 0, 0, -7"
+                            Text="5km"
+                            HorizontalTextAlignment="End"/>
+                        <BoxView
+                            HeightRequest="1"
+                            BackgroundColor="White"
+                            VerticalOptions="End"
+                            HorizontalOptions="FillAndExpand" />
+                    </Grid>
+                </Grid>
+
+                <!-- Trip Purpose -->
+                <Label
+				    Text="Trip Purpose:"
+				    FontSize="24"
+				    TextColor="White"
+				    Margin="0, 0, 0, -5" />
+                <Grid 
+                    Margin="0, 0, 0, 5">
+                    <Entry
+					    Keyboard="Text"
+					    FontSize="20"
+					    TextColor="White"
+					    BackgroundColor="Transparent"
+					    Margin="0, 0, 0, -7"
+                        Text="Personal"/>
+                    <BoxView
+					    HeightRequest="1"
+					    BackgroundColor="White"
+					    VerticalOptions="End"
+					    HorizontalOptions="FillAndExpand" />
+                </Grid>
+                <Label
+				    Text="Specify the purpose of your trip (only 'Work' or 'Personal' are valid options)"
+				    FontSize="14"
+				    TextColor="Gray"
+				    Margin="0, 0, 0, 20" />
+
+                <!-- Date Picker (Cotton Picker) -->
+                <Label
+                    Text="Date:"
+                    TextColor="White"
+                    FontSize="24"
+                    Margin="0, 20, 0, -5" />
+                <Grid Margin="0, 0, 0, 5">
+                    <DatePicker 
+					    Date="{Binding Date}"
+					    TextColor="White"
+					    FontSize="20"
+					    BackgroundColor="Transparent"
+					    Margin="0, 0, 0, -7" />
+                    <BoxView
+					    HeightRequest="1"
+					    BackgroundColor="White"
+					    VerticalOptions="End"
+					    HorizontalOptions="FillAndExpand" />
+                </Grid>
+                <Label
+				    Text="The date format is 'MM/dd/yyyy'"
+				    FontSize="14"
+				    TextColor="Gray"
+				    Margin="0, 0, 0, 40" />
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <!-- Update Button -->
+                    <Button
+				        Text="UPDATE"
+				        BackgroundColor="RoyalBlue"
+				        FontSize="24"
+				        HorizontalOptions="FillAndExpand"
+				        VerticalOptions="FillAndExpand"
+				        TextColor="White"
+                        Grid.Column="0"
+                        Margin="0, 0, 5, 0"/>
+                    
+                    <!-- Delete Button -->
+                    <Button
+                        Text="DELETE"
+                        BackgroundColor="Red"
+                        FontSize="24"
+                        HorizontalOptions="FillAndExpand"
+                        VerticalOptions="FillAndExpand"
+                        TextColor="White"
+                        Grid.Column="1"
+                        Margin="5, 0, 0, 0"/>
+                </Grid>
+            </StackLayout>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>
